@@ -2,6 +2,7 @@ package core;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
@@ -49,6 +50,43 @@ public class ChatStateTest {
         IChatState chatState = new ChatState();
         List<ChatMessage> retrieveMessages = chatState.retrieveMessages();
         assertThat(retrieveMessages.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void testChatResponseNoMessage() throws Exception {
+        IChatState chatState = new ChatState();
+        ChatResponse expectedChatResponse = new ChatResponse(new ArrayList<ChatMessage>(), 0);
+        ChatResponse retrieveChatResponse = chatState.retrieveChatResponse(0);
+        assertThat(expectedChatResponse).isEqualTo(retrieveChatResponse);
+    }
+
+    @Test
+    public void testChatResponseGetMessageFromPosition() throws Exception {
+        ChatMessage message1 = new ChatMessage("nik1", "username1");
+        ChatMessage message2 = new ChatMessage("nik2", "username2");
+        ArrayList<ChatMessage> messages = new ArrayList<ChatMessage>();
+        messages.add(message2);
+        ChatResponse expectedChatResponse = new ChatResponse(messages, 2);
+
+        IChatState chatState = new ChatState();
+        chatState.storeNewMessage(message1);
+        chatState.storeNewMessage(message2);
+
+        ChatResponse retrieveChatResponse = chatState.retrieveChatResponse(1);
+        assertThat(expectedChatResponse).isEqualTo(retrieveChatResponse);
+    }
+
+
+    @Test
+    public void testChatResponseGetNoMessageFromPosition() throws Exception {
+        ArrayList<ChatMessage> messages = new ArrayList<ChatMessage>();
+        ChatResponse expectedChatResponse = new ChatResponse(messages, 0);
+
+        IChatState chatState = new ChatState();
+
+
+        ChatResponse retrieveChatResponse = chatState.retrieveChatResponse(1);
+        assertThat(expectedChatResponse).isEqualTo(retrieveChatResponse);
     }
 
 
