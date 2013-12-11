@@ -32,7 +32,7 @@ public class ChatState implements IChatState {
 
     @Override
     public ChatResponse retrieveChatResponse(int fromSeq) {
-        if (fromSeq > nextSeq) fromSeq = nextSeq;
+        if (fromSeq > nextSeq || fromSeq < 0) fromSeq = nextSeq;
         return new ChatResponse(storedChatMessages.subList(fromSeq, nextSeq), nextSeq);
     }
 

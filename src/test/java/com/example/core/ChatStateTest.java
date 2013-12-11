@@ -81,13 +81,19 @@ public class ChatStateTest {
     public void testChatResponseGetNoMessageFromPosition() throws Exception {
         ArrayList<ChatMessage> messages = new ArrayList<ChatMessage>();
         ChatResponse expectedChatResponse = new ChatResponse(messages, 0);
-
         IChatState chatState = new ChatState();
-
-
         ChatResponse retrieveChatResponse = chatState.retrieveChatResponse(1);
         assertThat(expectedChatResponse).isEqualTo(retrieveChatResponse);
     }
 
+
+    @Test
+    public void testChatResponseGetMessageFromNegativePosition() throws Exception {
+        ArrayList<ChatMessage> messages = new ArrayList<ChatMessage>();
+        ChatResponse expectedChatResponse = new ChatResponse(messages, 0);
+        IChatState chatState = new ChatState();
+        ChatResponse retrieveChatResponse = chatState.retrieveChatResponse(-1);
+        assertThat(expectedChatResponse).isEqualTo(retrieveChatResponse);
+    }
 
 }
