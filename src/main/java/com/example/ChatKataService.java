@@ -1,3 +1,5 @@
+package com.example;
+
 /**
  * Created with IntelliJ IDEA.
  * User: psm1984
@@ -5,11 +7,11 @@
  * Time: 9:43
  */
 
+import com.example.core.ChatState;
+import com.example.resources.ChatKataResource;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
-import core.ChatState;
-import resources.ChatKataResource;
 
 
 public class ChatKataService extends Service<ChatKataConfiguration> {

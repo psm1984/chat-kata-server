@@ -1,3 +1,5 @@
+package com.example;
+
 /**
  * Created with IntelliJ IDEA.
  * User: psm1984

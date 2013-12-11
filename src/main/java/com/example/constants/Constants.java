@@ -1,4 +1,4 @@
-package constants;
+package com.example.constants;
 
 /**
  * Created with IntelliJ IDEA.

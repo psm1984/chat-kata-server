@@ -1,16 +1,18 @@
-package resources; /**
+package com.example.resources;
+
+/**
  * Created with IntelliJ IDEA.
  * User: psm1984
  * Date: 11/12/13
  * Time: 9:50
  */
 
+import com.example.constants.Constants;
+import com.example.core.ChatMessage;
+import com.example.core.ChatResponse;
+import com.example.core.IChatState;
 import com.google.common.base.Optional;
 import com.yammer.metrics.annotation.Timed;
-import constants.Constants;
-import core.ChatMessage;
-import core.ChatResponse;
-import core.IChatState;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -45,7 +47,7 @@ public class ChatKataResource {
         if (message == null ||
                 message.getMessage() == null ||
                 message.getNick() == null) {
-            return Response.status(422).build(); //422 Unprocessable
+            return Response.status(Response.Status.BAD_REQUEST).build();
         } else {
             iChatState.storeNewMessage(message);
             return Response.ok().build();

@@ -1,4 +1,4 @@
-package core;
+package com.example.core;
 
 import java.util.List;
 

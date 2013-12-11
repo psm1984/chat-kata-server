@@ -5,16 +5,16 @@
  * Time: 10:01
  */
 
+import com.example.constants.Constants;
+import com.example.core.ChatMessage;
+import com.example.core.ChatResponse;
+import com.example.core.ChatState;
+import com.example.core.IChatState;
+import com.example.resources.ChatKataResource;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.yammer.dropwizard.testing.ResourceTest;
-import constants.Constants;
-import core.ChatMessage;
-import core.ChatResponse;
-import core.ChatState;
-import core.IChatState;
 import org.junit.Test;
-import resources.ChatKataResource;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,8 @@ public class TestChatKataResources extends ResourceTest {
         ClientResponse response = webResource.type("application/json")
                 .post(ClientResponse.class, chatMessage);
 
-        assertThat(response.getStatus()).isEqualTo(200);
+        assertThat(response.getStatus()).isEqualTo(ClientResponse.Status.OK.getStatusCode());
+
         verify(iChatStateMock).storeNewMessage(chatMessage);
     }
 
@@ -50,7 +51,7 @@ public class TestChatKataResources extends ResourceTest {
         String nullJSON = "null";
         WebResource webResource = client().resource(Constants.API_CHAT_KATA);
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, nullJSON);
-        assertThat(response.getStatus()).isEqualTo(422);
+        assertThat(response.getStatus()).isEqualTo(ClientResponse.Status.BAD_REQUEST.getStatusCode());
     }
 
     @Test
@@ -58,7 +59,7 @@ public class TestChatKataResources extends ResourceTest {
         String badJSON = "{\"nic\":\"user\",\"message\": \"Hola Mundo\"}";
         WebResource webResource = client().resource(Constants.API_CHAT_KATA);
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, badJSON);
-        assertThat(response.getStatus()).isEqualTo(422);
+        assertThat(response.getStatus()).isEqualTo(ClientResponse.Status.BAD_REQUEST.getStatusCode());
     }
 
     @Test
