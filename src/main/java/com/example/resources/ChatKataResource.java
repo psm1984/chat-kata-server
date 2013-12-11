@@ -17,16 +17,13 @@ import com.yammer.metrics.annotation.Timed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Path(Constants.API_CHAT_KATA)
 @Produces(MediaType.APPLICATION_JSON)
 public class ChatKataResource {
-    private final AtomicLong counter;
     private IChatState iChatState;
 
     public ChatKataResource() {
-        this.counter = new AtomicLong();
     }
 
     @GET

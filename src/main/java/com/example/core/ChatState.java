@@ -17,7 +17,6 @@ public class ChatState implements IChatState {
     public ChatState() {
         storedChatMessages = new ArrayList<ChatMessage>();
         nextSeq = 0;
-
     }
 
     @Override

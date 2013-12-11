@@ -41,9 +41,13 @@ public class ChatResponse {
     }
 
     public boolean equals(Object obj) {
-        ChatResponse objComp = (ChatResponse) obj;
-        return (this.getNextSeq() == objComp.getNextSeq() &&
-                this.getMessages().equals(objComp.getMessages()));
+        if (obj instanceof ChatResponse) return equals((ChatResponse) obj);
+        else return false;
+    }
+
+    private boolean equals(ChatResponse obj) {
+        return (this.getNextSeq() == obj.getNextSeq() &&
+                this.getMessages().equals(obj.getMessages()));
     }
 
 }

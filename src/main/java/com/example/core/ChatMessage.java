@@ -39,10 +39,13 @@ public class ChatMessage {
     }
 
     public boolean equals(Object obj) {
-        ChatMessage objComp = (ChatMessage) obj;
-        return (this.getNick().equals(objComp.getNick()) &&
-                this.getMessage().equals(objComp.getMessage()));
+        if (obj instanceof ChatMessage) return equals((ChatMessage) obj);
+        else return false;
     }
 
+    private boolean equals(ChatMessage obj) {
+        return (this.getNick().equals(obj.getNick()) &&
+                this.getMessage().equals(obj.getMessage()));
+    }
 
 }
